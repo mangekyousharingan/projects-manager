@@ -7,11 +7,24 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11.4"
+python = "^3.11"
 fastapi = "^0.115.6"
 uvicorn = "^0.34.0"
 
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.10.0"
+mypy = "^1.14.1"
+isort = "^5.13.2"
+pre-commit = "^4.0.1"
+flake8 = "^7.1.1"
+bandit = "^1.8.0"
+pyupgrade = "^3.19.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 110
+target-version = ['py311']

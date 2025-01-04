@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData, DateTime, func
+from sqlalchemy import DateTime, MetaData, func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 naming_convention = {

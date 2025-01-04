@@ -1,8 +1,8 @@
+from geoalchemy2 import Geometry
 from sqlalchemy import Date, String, Text
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy.orm import Mapped, mapped_column
 
 from src.adapters.database.tables.base import Base
-from geoalchemy2 import Geometry
 
 
 class Project(Base):

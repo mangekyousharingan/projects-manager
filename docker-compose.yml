@@ -8,3 +8,18 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+
+  projects-db:
+    image: postgis/postgis:15-3.3
+    container_name: projects-db
+    environment:
+      POSTGRES_USER: user  #TODO: move it to config (same for alembic)
+      POSTGRES_PASSWORD: secure_password
+      POSTGRES_DB: projects_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+
+volumes:
+  postgis_data:

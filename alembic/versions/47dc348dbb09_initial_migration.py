@@ -12,6 +12,7 @@ import geoalchemy2
 import sqlalchemy as sa
 
 from alembic import op  # type: ignore[attr-defined]
+from sqlalchemy import inspect
 
 # revision identifiers, used by Alembic.
 revision: str = "47dc348dbb09"
@@ -40,14 +41,6 @@ def upgrade() -> None:
         sa.Column("updated_at", sa.DateTime(timezone=True), nullable=True),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_projects")),
     )
-    op.create_index(
-        "idx_projects_area_of_interest",
-        "projects",
-        ["area_of_interest"],
-        unique=False,
-        postgresql_using="gist",
-    )
-    # ### end Alembic commands ###
 
 
 def downgrade() -> None:

@@ -14,7 +14,6 @@ services:
       POSTGRES_HOST: projects-db
       POSTGRES_PORT: 5432
       DATABASE_URL: "postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@projects-db:5432/projects_db"
-
     depends_on:
       - projects-db
     env_file:

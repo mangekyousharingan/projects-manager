@@ -1,7 +1,7 @@
 """Initial migration
 
 Revision ID: 47dc348dbb09
-Revises: 
+Revises:
 Create Date: 2025-01-04 23:10:31.771487
 
 """
@@ -11,7 +11,7 @@ from collections.abc import Sequence
 import geoalchemy2
 import sqlalchemy as sa
 
-from alembic import op
+from alembic import op  # type: ignore[attr-defined]
 
 # revision identifiers, used by Alembic.
 revision: str = "47dc348dbb09"

@@ -21,10 +21,8 @@ engine = create_engine(DATABASE_URL)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
-    logger.info("Starting lifespan...")
     try:
         with engine.connect() as conn:
-            logger.info("Testing database connection...")
             conn.execute(text("SELECT 1"))
         logger.info("Database connection successful!")
     except OperationalError as e:

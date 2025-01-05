@@ -9,24 +9,31 @@ services:
     ports:
       - "8000:8000"
     environment:
-      POSTGRES_USER: user  #TODO: move it to config (same for alembic)
-      POSTGRES_PASSWORD: secure_password
-      POSTGRES_DB: projects_db
+      PORT: 8000
+      HOST: 0.0.0.0
+      POSTGRES_HOST: projects-db
+      POSTGRES_PORT: 5432
+      DATABASE_URL: "postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@projects-db:5432/projects_db"
+
     depends_on:
       - projects-db
+    env_file:
+      - .env
 
 
   projects-db:
     image: postgis/postgis:15-3.3
     container_name: projects-db
     environment:
-      POSTGRES_USER: user  #TODO: move it to config (same for alembic)
-      POSTGRES_PASSWORD: secure_password
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: projects_db
     ports:
       - "5432:5432"
     volumes:
       - postgis_data:/var/lib/postgresql/data
+    env_file:
+      - .env
 
 volumes:
   postgis_data:

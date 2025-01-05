@@ -8,6 +8,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    environment:
+      POSTGRES_USER: user  #TODO: move it to config (same for alembic)
+      POSTGRES_PASSWORD: secure_password
+      POSTGRES_DB: projects_db
+    depends_on:
+      - projects-db
+
 
   projects-db:
     image: postgis/postgis:15-3.3

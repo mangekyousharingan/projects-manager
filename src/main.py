@@ -7,6 +7,8 @@ from fastapi import FastAPI
 from psycopg2 import OperationalError
 from sqlalchemy import create_engine, text
 
+from src.adapters.fastapi.api import api_router
+
 # TODO: Added temporary testing
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -36,7 +38,4 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
 
 app = FastAPI(title="Projects manager API", lifespan=lifespan)
 
-
-@app.get("/health")
-def read_root() -> str:
-    return "OK"
+app.include_router(router=api_router)

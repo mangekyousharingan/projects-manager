@@ -12,7 +12,6 @@ import geoalchemy2
 import sqlalchemy as sa
 
 from alembic import op  # type: ignore[attr-defined]
-from sqlalchemy import inspect
 
 # revision identifiers, used by Alembic.
 revision: str = "47dc348dbb09"

@@ -13,4 +13,4 @@ class Project(Base):
     description: Mapped[str] = mapped_column(Text, nullable=True)
     start_date: Mapped[Date] = mapped_column(Date, nullable=False)
     end_date: Mapped[Date] = mapped_column(Date, nullable=False)
-    area_of_interest: Mapped[str] = mapped_column(Geometry("MULTIPOLYGON"), nullable=False)
+    area_of_interest: Mapped[Geometry] = mapped_column(Geometry("MULTIPOLYGON"), nullable=False)

@@ -1107,6 +1107,24 @@ pluggy = ">=1.5,<2"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-asyncio"
+version = "0.25.1"
+description = "Pytest support for asyncio"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "pytest_asyncio-0.25.1-py3-none-any.whl", hash = "sha256:c84878849ec63ff2ca509423616e071ef9cd8cc93c053aa33b5b8fb70a990671"},
+    {file = "pytest_asyncio-0.25.1.tar.gz", hash = "sha256:79be8a72384b0c917677e00daa711e07db15259f4d23203c59012bcd989d4aee"},
+]
+
+[package.dependencies]
+pytest = ">=8.2,<9"
+
+[package.extras]
+docs = ["sphinx (>=5.3)", "sphinx-rtd-theme (>=1)"]
+testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)"]
+
+[[package]]
 name = "pyupgrade"
 version = "3.19.1"
 description = "A tool to automatically upgrade syntax for newer versions."
@@ -1458,4 +1476,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "d63121906bfc4be1c60d2dcec1195c2dd0fc86735777d63aa2282b48df8c08c8"
+content-hash = "6cad509b73cc553ebeb884f175c90f3e33d2f2ceac3e1072829c3662301ab167"

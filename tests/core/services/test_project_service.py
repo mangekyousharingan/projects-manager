@@ -1,8 +1,12 @@
 from datetime import date
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-from unittest.mock import AsyncMock
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from src.adapters.database.repository import ProjectRepository
 from src.core.entities.project import Project
+from src.core.services.factory import get_project_service
 from src.core.services.project_service import ProjectService
 
 
@@ -111,3 +115,14 @@ async def test_update_project_not_found(project_service, mock_repository, sample
         await project_service.update_project(1, sample_project)
 
     mock_repository.update_project.assert_awaited_once_with(1, sample_project)
+
+
+@pytest.mark.asyncio
+async def test_get_project_service_factory():
+    mock_session = MagicMock(spec=AsyncSession)
+
+    service = get_project_service(session=mock_session)
+
+    assert isinstance(service, ProjectService), "Expected a ProjectService instance"
+    assert isinstance(service.repository, ProjectRepository), "Expected service to use a ProjectRepository"
+    assert service.repository.session is mock_session

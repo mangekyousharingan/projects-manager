@@ -1,11 +1,13 @@
 from datetime import date
+import json
 from unittest.mock import Mock
+
 from geoalchemy2 import WKBElement
 from shapely import to_geojson
 from shapely.geometry import Polygon
 from shapely.wkb import dumps as wkb_dumps
+
 from src.core.entities.project import Project
-import json
 
 
 def create_mock_wkbelement(geometry):

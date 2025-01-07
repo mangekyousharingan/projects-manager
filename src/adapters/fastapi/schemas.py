@@ -131,6 +131,8 @@ class ProjectRequest(BaseModel):
     def validate_geojson(cls, area_of_interest: dict[str, Any]) -> dict[str, Any]:
         try:
             geojson_obj = geojson.loads(json.dumps(area_of_interest))
+            if "coordinates" not in area_of_interest:
+                raise ValueError("Missing 'coordinates' key in area_of_interest.")
             if geojson_obj["type"] != "MultiPolygon":
                 raise ValueError("area_of_interest must have a type of 'MultiPolygon'.")
         except Exception as exc:

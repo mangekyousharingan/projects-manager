@@ -1,7 +1,7 @@
-from contextlib import asynccontextmanager
 from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 
-from fastapi import Request, FastAPI
+from fastapi import FastAPI, Request
 from psycopg2 import OperationalError
 from sqlalchemy import text
 from starlette.responses import JSONResponse

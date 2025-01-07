@@ -24,7 +24,7 @@ Before starting, ensure you have the following installed on your machine:
 
 1. **Docker**: [Install Docker](https://docs.docker.com/get-docker/)
 2. **Docker Compose**: [Install Docker Compose](https://docs.docker.com/compose/install/)
-3. **Git** (optional): To clone the repository.
+3. **Git**: To clone the repository. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## Getting Started
 

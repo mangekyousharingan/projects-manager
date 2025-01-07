@@ -9,7 +9,7 @@ from alembic import context  # type: ignore[attr-defined]
 # access to the values within the .ini file in use.
 config = context.config
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL").replace("asyncpg", "psycopg2")  # type: ignore[union-attr]
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable is not set!")
 
@@ -25,7 +25,7 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 from src.adapters.database.tables.base import Base  # noqa: E402
-from src.adapters.database.tables.project import Project  # noqa: F401, E402
+from src.adapters.database.tables.project import ProjectTable  # noqa: F401, E402
 
 target_metadata = Base.metadata
 

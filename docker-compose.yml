@@ -13,7 +13,7 @@ services:
       HOST: 0.0.0.0
       POSTGRES_HOST: projects-db
       POSTGRES_PORT: 5432
-      DATABASE_URL: "postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@projects-db:5432/projects_db"
+      DATABASE_URL: "postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@projects-db:5432/projects_db"
     depends_on:
       - projects-db
     env_file:

@@ -10,11 +10,13 @@ readme = "README.md"
 python = "^3.11"
 fastapi = "^0.115.6"
 uvicorn = "^0.34.0"
-sqlalchemy = "^2.0.36"
+sqlalchemy = {version = "^2.0.36", extras = ["asyncio"]}
 psycopg2-binary = "^2.9.10"
 alembic = "^1.14.0"
 geoalchemy2 = "^0.16.0"
 geojson = "^3.2.0"
+asyncpg = "^0.30.0"
+shapely = "^2.0.6"
 
 
 [tool.poetry.group.dev.dependencies]

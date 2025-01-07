@@ -11,4 +11,8 @@ echo "Applying database migrations..."
 alembic upgrade head
 
 echo "Starting the application..."
-exec uvicorn src.main:app --host "${HOST}" --port "${PORT}"
+exec gunicorn src.main:app \
+    --worker-class uvicorn.workers.UvicornWorker \
+    --workers 4 \
+    --bind "${HOST}:${PORT}" \
+    --timeout 60

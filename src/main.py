@@ -1,31 +1,23 @@
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 import logging
-import os
 
 from fastapi import FastAPI
 from psycopg2 import OperationalError
-from sqlalchemy import create_engine, text
+from sqlalchemy import text
 
+from src.adapters.database.session import sessionmanager
 from src.adapters.fastapi.api import api_router
 
-# TODO: Added temporary testing
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-# TODO: Added temporary for testing
-DATABASE_URL = os.getenv("DATABASE_URL")
-if not DATABASE_URL:
-    raise ValueError("DATABASE_URL environment variable is not set")
-
-engine = create_engine(DATABASE_URL)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
     try:
-        with engine.connect() as conn:
-            conn.execute(text("SELECT 1"))
+        async with sessionmanager.session() as session:
+            await session.execute(text("SELECT 1"))
         logger.info("Database connection successful!")
     except OperationalError as e:
         logger.info(f"Database connection failed: {str(e)}")

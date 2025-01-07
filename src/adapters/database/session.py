@@ -1,9 +1,7 @@
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 import os
-from typing import Annotated
 
-from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncConnection, AsyncSession, async_sessionmaker, create_async_engine
 
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -13,7 +11,7 @@ if not DATABASE_URL:
 
 class DBSessionManager:
     def __init__(self, database_url: str) -> None:
-        self._engine = create_async_engine(database_url, echo=True)
+        self._engine = create_async_engine(database_url, echo=False)
         self._sessionmaker = async_sessionmaker(autocommit=False, bind=self._engine)
 
     async def close(self) -> None:
@@ -57,6 +55,3 @@ sessionmanager = DBSessionManager(DATABASE_URL)  # read from pydantic settings
 async def get_db_session() -> AsyncIterator[AsyncSession]:
     async with sessionmanager.session() as session:
         yield session
-
-
-DBSessionDep = Annotated[AsyncSession, Depends(get_db_session)]

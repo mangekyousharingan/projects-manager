@@ -81,10 +81,19 @@ async def delete_project(
 @api_router.put("/projects/{project_id}", response_model=ProjectResponse)
 async def update_project(
     project_id: int,
-    project_data: ProjectRequest,
+    request: ProjectRequest,
     service: ProjectService = Depends(get_project_service),
 ) -> ProjectResponse:
-    updated_project = await service.update_project(project_id, project_data)
+    updated_project = await service.update_project(
+        project_id,
+        Project(
+            name=request.name,
+            description=request.description,
+            start_date=request.start_date,
+            end_date=request.end_date,
+            area_of_interest=Project.from_geojson(request.area_of_interest),
+        ),
+    )
 
     if not updated_project:
         raise HTTPException(
@@ -98,5 +107,5 @@ async def update_project(
         description=updated_project.description,
         start_date=updated_project.start_date.isoformat(),
         end_date=updated_project.end_date.isoformat(),
-        area_of_interest=updated_project.area_of_interest,
+        area_of_interest=updated_project.to_geojson(),
     )

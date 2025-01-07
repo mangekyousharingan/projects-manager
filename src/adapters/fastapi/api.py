@@ -4,7 +4,7 @@ from starlette.responses import JSONResponse
 
 from src.adapters.fastapi.schemas import ProjectRequest, ProjectResponse
 from src.core.entities.project import Project
-from src.core.services.factory import get_project_service
+from src.adapters.factory import get_project_service
 from src.core.services.project_service import ProjectService
 
 api_router = APIRouter(prefix="/v1")

@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.adapters.database.repository import ProjectRepository
 from src.core.entities.project import Project
-from src.core.services.factory import get_project_service
+from src.adapters.factory import get_project_service
 from src.core.services.project_service import ProjectService
 
 

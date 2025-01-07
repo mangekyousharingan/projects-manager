@@ -4,7 +4,7 @@ import os
 
 from sqlalchemy.ext.asyncio import AsyncConnection, AsyncSession, async_sessionmaker, create_async_engine
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL")  # read from pydantic settings
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable is not set")
 

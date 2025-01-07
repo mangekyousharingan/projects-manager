@@ -1,9 +1,9 @@
-from src.adapters.database.repository import ProjectRepository
 from src.core.entities.project import Project
+from src.core.ports.project_repository import ProjectRepositoryPort
 
 
 class ProjectService:
-    def __init__(self, repository: ProjectRepository):
+    def __init__(self, repository: ProjectRepositoryPort) -> None:
         self.repository = repository
 
     async def get_project_by_id(self, project_id: int) -> Project:

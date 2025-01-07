@@ -16,7 +16,7 @@ class Project:
         end_date: date,
         area_of_interest: WKBElement,
         id: int | None = None,
-    ):
+    ) -> None:
         self.id = id
         self.name = name
         self.description = description
